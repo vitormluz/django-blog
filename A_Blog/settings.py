@@ -1,10 +1,17 @@
 from pathlib import Path
+from django.contrib.messages import constants
+from dotenv import load_dotenv
 
+import os
+
+load_dotenv()
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-f(#30g3=)+hmwrsa2##zzykdby==t+dvtcc%n%v&i56wwb_tv1'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -18,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_summernote',
 
     'posts',
     'comentarios',
@@ -100,3 +109,10 @@ MEDAI_ROOT = BASE_DIR / 'media'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MESSAGE_TAGS = {
+    constants.SUCCESS: 'alert-success',
+    constants.ERROR: 'alert-error',
+    constants.WARNING: 'alert-warning',
+}
